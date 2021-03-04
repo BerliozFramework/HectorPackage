@@ -1,0 +1,38 @@
+{
+  "name": "berlioz/hector-package",
+  "type": "berlioz-package",
+  "description": "Hector ORM package for Berlioz Framework",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "license": "MIT",
+  "homepage": "https://getberlioz.com",
+  "authors": [
+    {
+      "name": "Ronan Giron",
+      "email": "ronan@getberlioz.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Berlioz\\Package\\Hector\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Berlioz\\Package\\Hector\\Tests\\": "tests/"
+    }
+  },
+  "require": {
+    "php": "^8.0",
+    "berlioz/core": "^1.0",
+    "hectororm/orm": "@dev"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.3"
+  },
+  "config": {
+    "berlioz": {
+      "package": "Berlioz\\Package\\Hector\\HectorPackage"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "hector": {
+    "dsn": null,
+    "read_dsn": null,
+    "schemas": []
+  },
+  "twig": {
+    "paths": {
+      "Berlioz-HectorPackage": "%berlioz.directories.vendor%/berlioz/hector-package/resources"
+    }
+  }
+}
