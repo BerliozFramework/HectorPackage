@@ -30,7 +30,7 @@ use Psr\SimpleCache\InvalidArgumentException;
 
 class HectorPackage extends AbstractPackage
 {
-    private static Debug\Hector $debugSection;
+    private static ?Debug\Hector $debugSection = null;
 
     ///////////////
     /// PACKAGE ///
@@ -80,15 +80,33 @@ class HectorPackage extends AbstractPackage
         // Init ORM
         $core->getServiceContainer()->get(Orm::class);
 
-        if (null !== $core && $core->getConfig()->get('berlioz.debug', false)) {
-            $this::$debugSection = new Debug\Hector($core);
-            $core->getDebug()->addSection($this::$debugSection);
-        }
+        static::debugSection($core);
     }
 
     /////////////////
     /// FACTORIES ///
     /////////////////
+
+    /**
+     * Get debug section.
+     *
+     * @param Core $core
+     *
+     * @return Debug\Hector|null
+     * @throws BerliozException
+     * @throws ConfigException
+     */
+    private static function debugSection(Core $core): ?Debug\Hector
+    {
+        if (null === static::$debugSection) {
+            if (null !== $core && $core->getConfig()->get('berlioz.debug', false)) {
+                static::$debugSection = new Debug\Hector($core);
+                $core->getDebug()->addSection(static::$debugSection);
+            }
+        }
+
+        return static::$debugSection;
+    }
 
     /**
      * Init hector orm package.
@@ -118,6 +136,7 @@ class HectorPackage extends AbstractPackage
      * @throws InvalidArgumentException
      * @throws OrmException
      * @throws SchemaException
+     * @throws BerliozException
      */
     public static function hectorOrmFactory(Connection $connection, Core $core): Orm
     {
@@ -125,9 +144,7 @@ class HectorPackage extends AbstractPackage
         $orm = OrmFactory::orm($options, $connection, $core->getCacheManager());
 
         // Debug activate?
-        if ($core->getConfig()->get('berlioz.debug.enable', false)) {
-            self::$debugSection->setHector($orm);
-        }
+        self::debugSection($core)?->setHector($orm);
 
         $orm->setExternalEnvironment($core);
 
