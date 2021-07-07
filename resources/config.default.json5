@@ -1,0 +1,24 @@
+{
+  berlioz: {
+    http: {
+      middlewares: {
+        '98': {
+          'hector': 'Berlioz\\Package\\Hector\\Http\\HectorMiddleware'
+        }
+      }
+    }
+  },
+  hector: {
+    dsn: null,
+    read_dsn: null,
+    name: null,
+    schemas: [],
+    dynamic_events: true,
+    types: [],
+  },
+  twig: {
+    paths: {
+      "Berlioz-HectorPackage": "{config: berlioz.directories.vendor}/berlioz/hector-package/resources"
+    }
+  }
+}
