@@ -11,7 +11,6 @@
   hector: {
     dsn: null,
     read_dsn: null,
-    name: null,
     schemas: [],
     dynamic_events: true,
     types: [],
