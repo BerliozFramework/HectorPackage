@@ -2,8 +2,6 @@
   "name": "berlioz/hector-package",
   "type": "berlioz-package",
   "description": "Hector ORM package for Berlioz Framework",
-  "minimum-stability": "beta",
-  "prefer-stable": true,
   "license": "MIT",
   "homepage": "https://getberlioz.com",
   "authors": [
@@ -26,6 +24,8 @@
       "/tests_env/src/"
     ]
   },
+  "minimum-stability": "beta",
+  "prefer-stable": true,
   "require": {
     "php": "^8.0",
     "berlioz/core": "^2.0",
@@ -33,7 +33,7 @@
     "doctrine/sql-formatter": "^1.1"
   },
   "require-dev": {
-    "phpunit/phpunit": "^9.3",
+    "phpunit/phpunit": "^9.5",
     "berlioz/http-core": "^2.0"
   },
   "config": {
