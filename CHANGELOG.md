@@ -10,6 +10,10 @@ use [Keep a Changelog] (http://keepachangelog.com/).
 
 - Add commands to generate schema and clear cache
 
+### Fixed
+
+- Bad signature for `EventSubscriber` class for deletion events
+
 ## [2.0.0-beta1] - 2021-07-07
 
 Start development.

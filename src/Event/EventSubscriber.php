@@ -42,11 +42,11 @@ class EventSubscriber extends AbstractSubscriber
     /**
      * On entity event.
      *
-     * @param EntitySaveEvent $event
+     * @param EntityEvent $event
      *
      * @throws ContainerException
      */
-    protected function onEntityEvent(EntitySaveEvent $event): void
+    protected function onEntityEvent(EntityEvent $event): void
     {
         $methods = [];
 
