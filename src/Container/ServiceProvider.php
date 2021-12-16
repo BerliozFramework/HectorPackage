@@ -15,7 +15,9 @@ declare(strict_types=1);
 namespace Berlioz\Package\Hector\Container;
 
 use Berlioz\Core\Core;
+use Berlioz\Package\Hector\Debug\HectorSection;
 use Berlioz\Package\Hector\DefaultCacheDriver;
+use Berlioz\Package\Hector\Event\EventSubscriber;
 use Berlioz\Package\Hector\Exception\HectorException;
 use Berlioz\Package\Hector\HectorAwareInterface;
 use Berlioz\ServiceContainer\Container;
@@ -50,7 +52,13 @@ class ServiceProvider extends AbstractServiceProvider
                     $options = $core->getConfig()->get('hector');
                     $options['log'] = $options['log'] ?? $core->getDebug()->isEnabled();
 
-                    return OrmFactory::connection($options);
+                    $connection = OrmFactory::connection($options);
+
+                    if (true === $core->getDebug()->isEnabled()) {
+                        $core->getDebug()->addSection(new HectorSection($connection->getLogger()));
+                    }
+
+                    return $connection;
                 }
             );
 
@@ -66,6 +74,11 @@ class ServiceProvider extends AbstractServiceProvider
                     );
 
                     $this->setOrmTypes($orm, $core);
+
+                    // Dynamic events
+                    if ($core->getConfig()->get('hector.dynamic_events', true)) {
+                        $core->getEventDispatcher()->addSubscriber(new EventSubscriber($core->getContainer()));
+                    }
 
                     return $orm;
                 }
@@ -92,30 +105,9 @@ class ServiceProvider extends AbstractServiceProvider
     protected function setOrmTypes(Orm $orm, Core $core): void
     {
         try {
-            foreach ((array)$core->getConfig()->get('hector.types', []) as $typeConfig) {
-                if (is_string($typeConfig)) {
-                    $orm->getDataTypes()->addGlobalType($core->getContainer()->get($typeConfig));
-                    continue;
-                }
-
-                if (false === is_array($typeConfig)) {
-                    continue;
-                }
-
-                $columnInfo = explode('.', $typeConfig['column']);
-                $column = match (count($columnInfo)) {
-                    2 => $orm->getSchemaContainer()->getColumn($columnInfo[1], $columnInfo[0]),
-                    3 => $orm->getSchemaContainer()->getColumn($columnInfo[2], $columnInfo[1], $columnInfo[0]),
-                    default => throw HectorException::typesConfig(),
-                };
-
-                $orm->getDataTypes()->addColumnType(
-                    $column,
-                    $core->getContainer()->get(($typeConfig['column'] ?? null) ?: throw HectorException::typesConfig())
-                );
+            foreach ((array)$core->getConfig()->get('hector.types', []) as $type => $obj) {
+                $orm->getTypes()->add($type, $core->getContainer()->get($obj));
             }
-        } catch (HectorException $exception) {
-            throw $exception;
         } catch (Throwable $exception) {
             throw HectorException::typesConfig($exception);
         }

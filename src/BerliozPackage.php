@@ -16,12 +16,9 @@ namespace Berlioz\Package\Hector;
 
 use Berlioz\Config\Adapter\JsonAdapter;
 use Berlioz\Config\ConfigInterface;
-use Berlioz\Config\Exception\ConfigException;
 use Berlioz\Core\Core;
 use Berlioz\Core\Package\AbstractPackage;
 use Berlioz\Package\Hector\Container\ServiceProvider;
-use Berlioz\Package\Hector\Debug\HectorSection;
-use Berlioz\Package\Hector\Event\EventSubscriber;
 use Berlioz\ServiceContainer\Container;
 use Hector\Orm\Orm;
 
@@ -48,21 +45,9 @@ class BerliozPackage extends AbstractPackage
 
     /**
      * @inheritDoc
-     * @throws ConfigException
      */
     public static function boot(Core $core): void
     {
-        /** @var Orm $orm */
-        $orm = $core->getContainer()->get(Orm::class);
-
-        if (true === $core->getDebug()->isEnabled()) {
-            $loggers = iterator_to_array($orm->getConnections()->getLoggers(), false);
-            $core->getDebug()->addSection(new HectorSection(...$loggers));
-        }
-
-        // Dynamic events
-        if ($core->getConfig()->get('hector.dynamic_events', true)) {
-            $core->getEventDispatcher()->addSubscriber(new EventSubscriber($core->getContainer()));
-        }
+        $core->getContainer()->get(Orm::class);
     }
 }
