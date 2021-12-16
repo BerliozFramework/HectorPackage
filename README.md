@@ -25,9 +25,8 @@ $ composer require berlioz/hector-package
 
 * **PHP** ^8.0
 * Packages:
-  * **berlioz/core**
-  * **hectororm/orm**
-
+    * **berlioz/core**
+    * **hectororm/orm**
 
 ## Usage
 
@@ -35,16 +34,18 @@ Package add a service named `hector`, who correspond to the `\Hector\Orm\Orm` cl
 
 See [**Hector ORM** documentation](https://gethectororm.com/) for more information.
 
-
 ## Configuration
 
 Default configuration:
-```json
+
+```json5
 {
-  "hector": {
-    "dsn": null,
-    "read_dsn": null,
-    "schemas": []
+  hector: {
+    dsn: null,
+    read_dsn: null,
+    schemas: [],
+    dynamic_events: true,
+    types: {}
   }
 }
 ```

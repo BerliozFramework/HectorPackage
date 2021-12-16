@@ -13,7 +13,7 @@
     read_dsn: null,
     schemas: [],
     dynamic_events: true,
-    types: [],
+    types: {},
   },
   "commands": {
     "hector:cache-clear": "Berlioz\\Package\\Hector\\Command\\CacheClearCommand",
