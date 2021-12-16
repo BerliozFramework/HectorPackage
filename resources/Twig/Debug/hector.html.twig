@@ -107,6 +107,7 @@
                                     <thead>
                                     <tr>
                                         <th scope="col">Key</th>
+                                        <th scope="col">Type</th>
                                         <th scope="col">Value</th>
                                     </tr>
                                     </thead>
@@ -114,7 +115,8 @@
                                     {% for key, value in logEntry.parameters %}
                                         <tr>
                                             <th scope="row">{{ key }}</th>
-                                            <td>{{ value }}</td>
+                                            <td>{{ value.dataType }}</td>
+                                            <td>{{ value.variable }}</td>
                                         </tr>
                                     {% endfor %}
                                     </tbody>
