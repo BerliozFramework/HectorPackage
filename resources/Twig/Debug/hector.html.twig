@@ -112,11 +112,11 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    {% for key, value in logEntry.parameters %}
+                                    {% for param in logEntry.parameters %}
                                         <tr>
-                                            <th scope="row">{{ key }}</th>
-                                            <td>{{ value.dataType }}</td>
-                                            <td>{{ value.variable }}</td>
+                                            <th scope="row">{{ param.name }}</th>
+                                            <td>{{ param.dataType }}</td>
+                                            <td>{{ param.value }}</td>
                                         </tr>
                                     {% endfor %}
                                     </tbody>
