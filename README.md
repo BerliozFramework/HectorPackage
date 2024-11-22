@@ -2,7 +2,7 @@
 
 [![Latest Version](https://img.shields.io/packagist/v/berlioz/hector-package.svg?style=flat-square)](https://github.com/BerliozFramework/HectorPackage/releases)
 [![Software license](https://img.shields.io/github/license/BerliozFramework/HectorPackage.svg?style=flat-square)](https://github.com/BerliozFramework/HectorPackage/blob/2.x/LICENSE)
-[![Build Status](https://img.shields.io/github/workflow/status/BerliozFramework/HectorPackage/Tests/2.x.svg?style=flat-square)](https://github.com/BerliozFramework/HectorPackage/actions/workflows/tests.yml?query=branch%3A2.x)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/BerliozFramework/HectorPackage/tests.yml?branch=2.x&style=flat-square)](https://github.com/BerliozFramework/HectorPackage/actions/workflows/tests.yml?query=branch%3A2.x)
 [![Quality Grade](https://img.shields.io/codacy/grade/a9ede0ed09604616b38e78cbde18f2fe/2.x.svg?style=flat-square)](https://www.codacy.com/manual/BerliozFramework/HectorPackage)
 [![Total Downloads](https://img.shields.io/packagist/dt/berlioz/hector-package.svg?style=flat-square)](https://packagist.org/packages/berlioz/hector-package)
 
