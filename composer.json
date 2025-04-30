@@ -24,8 +24,7 @@
       "/tests_env/src/"
     ]
   },
-  "minimum-stability": "beta",
-  "prefer-stable": true,
+  "minimum-stability": "stable",
   "require": {
     "php": "^8.0",
     "berlioz/core": "^2.0",
