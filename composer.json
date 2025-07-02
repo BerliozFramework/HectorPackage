@@ -28,7 +28,7 @@
   "require": {
     "php": "^8.0",
     "berlioz/core": "^2.0",
-    "hectororm/orm": "^1.0",
+    "hectororm/hectororm": "^1.0",
     "doctrine/sql-formatter": "^1.1"
   },
   "require-dev": {

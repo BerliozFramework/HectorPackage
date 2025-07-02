@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file. This projec
 to [Semantic Versioning] (http://semver.org/). For change log format,
 use [Keep a Changelog] (http://keepachangelog.com/).
 
+## [2.1.0] - 2025-07-02
+
+### Changed
+
+- Update package `hectororm/orm` to `hectororm/hectororm` (the main repository) 
+
 ## [2.0.0] - 2025-04-30
 
 No changes were introduced since the previous beta 3 release.
